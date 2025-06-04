@@ -1,3 +1,7 @@
+
+-------------------------------------------------------------------------------------------
+###Vowel-Substring 
+-------------------------------------------------------------------------------------------
 public static String findSubstring(String s, int k) {
     // Write your code here
        if (s == null || s.length() < k || k <= 0) return "Not found!";
@@ -28,3 +32,30 @@ public static String findSubstring(String s, int k) {
         c = Character.toLowerCase(c);
         return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';
     }
+-------------------------------------------------------------------------------------------
+### nMaximum cost of laptop count
+-------------------------------------------------------------------------------------------
+public static int maxCost(List<Integer> cost, List<String> labels, int dailyCount) {
+    // Write your code here
+    int maxDayCost = 0;
+    int currentCost = 0;
+    int legalCount = 0;
+
+    for (int i = 0; i < cost.size(); i++) {
+        currentCost += cost.get(i);
+
+        if (labels.get(i).equals("legal")) {
+            legalCount++;
+        }
+
+        if (legalCount == dailyCount) {
+            maxDayCost = Math.max(maxDayCost, currentCost);
+            currentCost = 0;
+            legalCount = 0;
+        }
+    }
+
+    return maxDayCost;
+
+    }
+-------------------------------------------------------------------------------------------
