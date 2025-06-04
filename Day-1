@@ -1,0 +1,30 @@
+public static String findSubstring(String s, int k) {
+    // Write your code here
+       if (s == null || s.length() < k || k <= 0) return "Not found!";
+
+        int maxVowelCount = 0, currentVowelCount = 0;
+        int startIndex = 0;
+
+        for (int i = 0; i < k; i++) {
+            if (isVowel(s.charAt(i))) currentVowelCount++;
+        }
+
+        maxVowelCount = currentVowelCount;
+
+        for (int i = k; i < s.length(); i++) {
+            if (isVowel(s.charAt(i - k))) currentVowelCount--;
+            if (isVowel(s.charAt(i))) currentVowelCount++;
+
+            if (currentVowelCount > maxVowelCount) {
+                maxVowelCount = currentVowelCount;
+                startIndex = i - k + 1;
+            }
+        }
+
+        return maxVowelCount > 0 ? s.substring(startIndex, startIndex + k) : "Not found!";
+    }
+
+    private static boolean isVowel(char c) {
+        c = Character.toLowerCase(c);
+        return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';
+    }
